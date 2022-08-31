@@ -1,0 +1,2 @@
+recursive-include tutorlicensemanager/patches *
+recursive-include tutorlicensemanager/templates *
