@@ -24,12 +24,9 @@ RUN mkdir -p /openedx/license_manager && \
     git clone $LICENSE_REPOSITORY_REPOSITORY --branch $LICENSE_MANAGER_VERSION --depth 1 /openedx/license_manager
 WORKDIR /openedx/license_manager
 
-# Copy the requirements explicitly even though we copy everything below
-# this prevents the image cache from busting unless the dependencies have changed.
-COPY requirements/production.txt /openedx/license_manager/requirements/production.txt
-COPY requirements/pip.txt /openedx/license_manager/requirements/pip.txt
 
 # Dependencies are installed as root so they cannot be modified by the application user.
+RUN ls -lha
 RUN pip install -r requirements/pip.txt
 RUN pip install -r requirements/production.txt
 
