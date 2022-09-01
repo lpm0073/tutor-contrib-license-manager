@@ -18,7 +18,7 @@ ENV DJANGO_SETTINGS_MODULE license_manager.settings.production
 # Now install license-manager
 # mcdaniel additions
 # basing this on: https://github.com/overhangio/tutor-license_manager/blob/master/tutorlicense_manager/templates/license_manager/build/license_manager/Dockerfile#L21
-ARG LICENSE_REPOSITORY_REPOSITORY=https://github.com/edx/license_manager.git
+ARG LICENSE_REPOSITORY_REPOSITORY=https://github.com/edx/license-manager.git
 ARG LICENSE_MANAGER_VERSION={{ OPENEDX_COMMON_VERSION }}
 RUN mkdir -p /openedx/license_manager && \
     git clone $LICENSE_REPOSITORY_REPOSITORY --branch $LICENSE_MANAGER_VERSION --depth 1 /openedx/license_manager
