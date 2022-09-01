@@ -24,6 +24,10 @@ RUN mkdir -p /openedx/license_manager && \
     git clone $LICENSE_REPOSITORY_REPOSITORY --branch $LICENSE_MANAGER_VERSION --depth 1 /openedx/license_manager
 WORKDIR /openedx/license_manager
 
+# Setup minimal yml config file, which is required by production settings
+RUN echo "{}" > /openedx/config.yml
+ENV LICENSE_MANAGER_CFG /openedx/config.yml
+
 
 # Dependencies are installed as root so they cannot be modified by the application user.
 RUN ls -lha
@@ -41,10 +45,6 @@ RUN cd /openedx/requirements/ \
 
 # Collect static assets (aka: "make static")
 RUN python3 manage.py collectstatic --noinput
-
-# Setup minimal yml config file, which is required by production settings
-RUN echo "{}" > /openedx/config.yml
-ENV LICENSE_MANAGER_CFG /openedx/config.yml
 
 EXPOSE 8003
 CMD uwsgi \
