@@ -10,9 +10,7 @@
 #
 #             Builds and uploads the Docker container to AWS ECR.
 #------------------------------------------------------------------------------
-PLUGIN_NAME="license_manager"
-PLUGIN_REPO="https://github.com/lpm0073/tutor-contrib-license-manager"
-AWS_REGION=us-east-2
+AWS_REGION="us-east-2"
 AWS_ACCOUNT_NUMBER=$(aws ecr describe-registry | jq -r '.registryId')
 AWS_ECR_REGISTRY="${AWS_ACCOUNT_NUMBER}.dkr.ecr.${AWS_REGION}.amazonaws.com"
 
@@ -20,6 +18,12 @@ AWS_ECR_REGISTRY="${AWS_ACCOUNT_NUMBER}.dkr.ecr.${AWS_REGION}.amazonaws.com"
 # this is stored locally in /home/ubuntu/.docker/config.json and lasts for 12 hours.
 aws ecr get-login-password --region $AWS_REGION | docker login --username AWS --password-stdin $AWS_ECR_REGISTRY
 
+
+LMS_HOST="web.stepwise.ai"
+HOST="subscriptions.${LMS_HOST}"
+
+PLUGIN_NAME="license_manager"
+PLUGIN_REPO="https://github.com/lpm0073/tutor-contrib-license-manager"
 
 # Plugin installation
 # ----------------------------------------------
@@ -42,8 +46,8 @@ LICENSE_MANAGER_OAUTH2_SECRET='dev-secret'
 LICENSE_MANAGER_OAUTH2_KEY='prod-key'
 LICENSE_MANAGER_OAUTH2_SECRET='prod-secret'
 
-tutor config save --set "LICENSE_MANAGER_LMS_HOST=web.stepwise.ai" \
-                  --set "LICENSE_MANAGER_HOST=subscriptions.web.stepwise.ai" \
+tutor config save --set "LICENSE_MANAGER_LMS_HOST=${LMS_HOST}" \
+                  --set "LICENSE_MANAGER_HOST=${HOST}" \
 		          --set "LICENSE_MANAGER_MYSQL_DATABASE=${LICENSE_MANAGER_MYSQL_DATABASE}" \
                   --set "LICENSE_MANAGER_MYSQL_PASSWORD=${LICENSE_MANAGER_MYSQL_PASSWORD}" \
                   --set "LICENSE_MANAGER_MYSQL_USERNAME=${LICENSE_MANAGER_MYSQL_USERNAME}" \
