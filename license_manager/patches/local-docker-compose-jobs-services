@@ -1,4 +1,4 @@
-license_manager-job:
+license-manager-job:
     image: {{ LICENSE_MANAGER_DOCKER_IMAGE }}
     environment:
       DJANGO_SETTINGS_MODULE: license_manager.settings.tutor.production

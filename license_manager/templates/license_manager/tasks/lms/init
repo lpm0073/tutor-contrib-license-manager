@@ -1,0 +1,55 @@
+# Modify users created with an incorrect email and that might clash with the newly created users
+./manage.py lms shell -c \
+  "from django.contrib.auth import get_user_model;\
+  get_user_model().objects.filter(username='license_manager').exclude(email='license_manager@openedx').update(email='license_manager@openedx')"
+
+./manage.py lms manage_user license_manager license_manager@openedx --staff --superuser --unusable-password
+
+# Development client
+./manage.py lms create_dot_application \
+    --grant-type client-credentials \
+    --redirect-uris "http://{{ LICENSE_MANAGER_HOST }}:8003/complete/edx-oauth2/" \
+    --client-id {{ LICENSE_MANAGER_OAUTH2_KEY_DEV }} \
+    --client-secret {{ LICENSE_MANAGER_OAUTH2_SECRET }} \
+    --scopes user_id \
+    --skip-authorization \
+    --update \
+    license-manager-dev \
+    license_manager
+./manage.py lms create_dot_application \
+    --grant-type authorization-code \
+    --redirect-uris "http://{{ LICENSE_MANAGER_HOST }}:8003/complete/edx-oauth2/" \
+    --client-id {{ LICENSE_MANAGER_OAUTH2_KEY_SSO_DEV }} \
+    --client-secret {{ LICENSE_MANAGER_OAUTH2_SECRET_SSO }} \
+    --scopes user_id \
+    --skip-authorization \
+    --update \
+    license-manager-sso-dev \
+    license_manager
+
+# Production client
+./manage.py lms create_dot_application \
+  --grant-type client-credentials \
+  --redirect-uris "{% if ENABLE_HTTPS %}https{% else %}http{% endif %}://{{ LICENSE_MANAGER_HOST }}/complete/edx-oauth2/" \
+  --client-id {{ LICENSE_MANAGER_OAUTH2_KEY }} \
+  --client-secret {{ LICENSE_MANAGER_OAUTH2_SECRET }} \
+  --scopes user_id \
+  --skip-authorization \
+  --update \
+  license_manager \
+  license_manager
+./manage.py lms create_dot_application \
+  --grant-type authorization-code \
+  --redirect-uris "{% if ENABLE_HTTPS %}https{% else %}http{% endif %}://{{ LICENSE_MANAGER_HOST }}/complete/edx-oauth2/" \
+  --client-id {{ LICENSE_MANAGER_OAUTH2_KEY_SSO }} \
+  --client-secret {{ LICENSE_MANAGER_OAUTH2_SECRET_SSO }} \
+  --scopes user_id \
+  --skip-authorization \
+  --update \
+  license-manager-sso \
+  license_manager
+
+# FIX NOTE: review this command to see what needs to be duplicated.
+# Create commerce configuration
+#./manage.py lms configure_commerce
+

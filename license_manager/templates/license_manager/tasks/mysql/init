@@ -1,9 +1,16 @@
+# create the license manager database
 echo "create license_manager database"
 mysql -u {{ MYSQL_ROOT_USERNAME }} --password="{{ MYSQL_ROOT_PASSWORD }}" --host "{{ MYSQL_HOST }}" --port {{ MYSQL_PORT }} -e "CREATE DATABASE IF NOT EXISTS {{ LICENSE_MANAGER_MYSQL_DATABASE }};"
+
+# create a mysql user w permissions
 echo "create license_manager user"
 mysql -u {{ MYSQL_ROOT_USERNAME }} --password="{{ MYSQL_ROOT_PASSWORD }}" --host "{{ MYSQL_HOST }}" --port {{ MYSQL_PORT }} -e "CREATE USER IF NOT EXISTS '{{ LICENSE_MANAGER_MYSQL_USERNAME }}';"
 mysql -u {{ MYSQL_ROOT_USERNAME }} --password="{{ MYSQL_ROOT_PASSWORD }}" --host "{{ MYSQL_HOST }}" --port {{ MYSQL_PORT }} -e "ALTER USER '{{ LICENSE_MANAGER_MYSQL_USERNAME }}'@'%' IDENTIFIED BY '{{ LICENSE_MANAGER_MYSQL_PASSWORD }}';"
 mysql -u {{ MYSQL_ROOT_USERNAME }} --password="{{ MYSQL_ROOT_PASSWORD }}" --host "{{ MYSQL_HOST }}" --port {{ MYSQL_PORT }} -e "GRANT ALL ON {{ LICENSE_MANAGER_MYSQL_DATABASE }}.* TO '{{ LICENSE_MANAGER_MYSQL_USERNAME }}'@'%';"
+
+# mcdaniel aug-2022
+# not sure how necessary this really is, but just to be on the safe side we're
+# syncing the License Manager user list to that of the LMS.
 echo "sync license_manager.core_user to openedx.auth_user"
 mysql -u {{ MYSQL_ROOT_USERNAME }} --password="{{ MYSQL_ROOT_PASSWORD }}" --host "{{ MYSQL_HOST }}" --port {{ MYSQL_PORT }} -e "\
 INSERT license_manager.core_user (password, last_login, is_superuser, username, first_name, last_name, email, is_staff, is_active, date_joined, full_name, lms_user_id) \
