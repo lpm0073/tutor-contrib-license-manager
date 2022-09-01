@@ -312,7 +312,7 @@ for logger in LOGGING["loggers"].values():
     if "local" in logger["handlers"]:
         logger["handlers"].remove("local")
 
-{{ patch("license_manager-settings-common") }}
+{{ patch("license-manager-settings-common") }}
 
 # Request the user's permissions in the ID token
 EXTRA_SCOPE = ['permissions']

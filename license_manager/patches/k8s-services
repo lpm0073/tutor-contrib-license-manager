@@ -2,11 +2,11 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: license_manager
+  name: license-manager
 spec:
   type: NodePort
   ports:
     - port: 8003
       protocol: TCP
   selector:
-    app.kubernetes.io/name: license_manager
+    app.kubernetes.io/name: license-manager

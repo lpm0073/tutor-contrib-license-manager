@@ -6,4 +6,4 @@ SOCIAL_AUTH_EDX_OAUTH2_PUBLIC_URL_ROOT = "{% if ENABLE_HTTPS %}https{% else %}ht
 
 BACKEND_SERVICE_EDX_OAUTH2_KEY = "{{ LICENSE_MANAGER_OAUTH2_KEY }}"
 
-{{ patch("license_manager-settings-production") }}
+{{ patch("license-manager-settings-production") }}

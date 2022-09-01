@@ -2,7 +2,7 @@
 apiVersion: batch/v1
 kind: Job
 metadata:
-  name: license_manager-job
+  name: license-manager-job
   labels:
     app.kubernetes.io/component: job
 spec:
@@ -22,4 +22,4 @@ spec:
       volumes:
         - name: settings
           configMap:
-            name: license_manager-settings
+            name: license-manager-settings

@@ -6,6 +6,5 @@ license_manager:
   volumes:
     - ../plugins/license_manager/apps/license_manager/settings:/openedx/license_manager/license_manager/settings/tutor:ro
   depends_on:
-    - discovery
     {% if RUN_MYSQL %}- mysql{% endif %}
     {% if RUN_LMS %}- lms{% endif %}

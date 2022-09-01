@@ -1,9 +1,9 @@
 license_manager:
   environment:
     DJANGO_SETTINGS_MODULE: license_manager.settings.tutor.development
-  command: ./manage.py runserver 0.0.0.0:8150
+  command: ./manage.py runserver 0.0.0.0:8003
   ports:
-    - "127.0.0.1:8150:8150"
+    - "127.0.0.1:18170:18170"
   stdin_open: true
   tty: true
   volumes:
