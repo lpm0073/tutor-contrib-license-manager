@@ -43,7 +43,7 @@ setup(
     install_requires=["tutor"],
     entry_points={
         "tutor.plugin.v1": [
-            "license-manager = license_manager.plugin"
+            "license_manager = license_manager.plugin"
         ]
     },
     classifiers=[
