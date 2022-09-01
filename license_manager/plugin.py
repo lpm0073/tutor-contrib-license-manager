@@ -15,8 +15,13 @@ hooks.Filters.CONFIG_DEFAULTS.add_items(
     [
         # Add your new settings that have default values here.
         # Each new setting is a pair: (setting_name, default_value).
-        # Prefix your setting names with 'LICENSEMANAGER_'.
-        ("LICENSEMANAGER_VERSION", __version__),
+        # Prefix your setting names with 'LICENSE_MANAGER_'.
+        ("LICENSE_MANAGER_VERSION", __version__),
+        ("SOCIAL_AUTH_REDIRECT_IS_HTTPS", False),
+        ("SOCIAL_AUTH_EDX_OAUTH2_ISSUER", "https://{{ LICENSE_MANAGER_LMS_HOST }}"),
+        ("SOCIAL_AUTH_EDX_OAUTH2_URL_ROOT", "http://lms:8000"),
+        ("SOCIAL_AUTH_EDX_OAUTH2_KEY", "license-manager-sso-key"),
+        ("SOCIAL_AUTH_EDX_OAUTH2_LOGOUT_URL", "{{ LICENSE_MANAGER_LMS_HOST }}/logout"),
     ]
 )
 
@@ -25,9 +30,14 @@ hooks.Filters.CONFIG_UNIQUE.add_items(
         # Add settings that don't have a reasonable default for all users here.
         # For instance: passwords, secret keys, etc.
         # Each new setting is a pair: (setting_name, unique_generated_value).
-        # Prefix your setting names with 'LICENSEMANAGER_'.
+        # Prefix your setting names with 'LICENSE_MANAGER_'.
         # For example:
-        # ("LICENSEMANAGER_SECRET_KEY", "{{ 24|random_string }}"),
+        # ("LICENSE_MANAGER_SECRET_KEY", "{{ 24|random_string }}"),
+        ("MYSQL_PASSWORD", "{{ 8|random_string }}"),
+        ("OAUTH2_SECRET", "{{ 16|random_string }}"),
+        ("SECRET_KEY", "{{ 24|random_string }}"),
+        ("SOCIAL_AUTH_EDX_OAUTH2_SECRET", "{{ 16|random_string }}"),
+        ("BACKEND_SERVICE_EDX_OAUTH2_SECRET", "{{ 16|random_string }}"),
     ]
 )
 
@@ -45,33 +55,45 @@ hooks.Filters.CONFIG_OVERRIDES.add_items(
 # INITIALIZATION TASKS
 ########################################
 
-# To run the script from templates/licensemanager/tasks/myservice/init, add:
-# hooks.Filters.COMMANDS_INIT.add_item((
-#     "myservice",
-#     ("licensemanager", "tasks", "myservice", "init"),
-# ))
+# To run the script from templates/license_manager/tasks/myservice/init, add:
+hooks.Filters.COMMANDS_INIT.add_item((
+        "mysql",
+        ("license_manager", "tasks", "mysql", "init"),
+ ))
 
+hooks.Filters.COMMANDS_INIT.add_item(
+    (
+        "lms",
+        ("license_manager", "tasks", "lms", "init"),
+    )
+)
+hooks.Filters.COMMANDS_INIT.add_item(
+    (
+        "license_manager",
+        ("license_manager", "tasks", "license_manager", "init"),
+    )
+)
 
 ########################################
 # DOCKER IMAGE MANAGEMENT
 ########################################
 
-# To build an image with `tutor images build myimage`, add a Dockerfile to templates/licensemanager/build/myimage and write:
-# hooks.Filters.IMAGES_BUILD.add_item((
-#     "myimage",
-#     ("plugins", "licensemanager", "build", "myimage"),
-#     "docker.io/myimage:{{ LICENSEMANAGER_VERSION }}",
-#     (),
-# )
+# To build an image with `tutor images build license_manager`, add a Dockerfile to templates/license_manager/build/license_manager and write:
+hooks.Filters.IMAGES_BUILD.add_item((
+    "license_manager",
+    ("plugins", "license_manager", "build", "license_manager"),
+    "{{ LICENSE_MANAGER_DOCKER_IMAGE }}",
+    (),
+))
 
-# To pull/push an image with `tutor images pull myimage` and `tutor images push myimage`, write:
+# To pull/push an image with `tutor images pull license_manager` and `tutor images push license_manager`, write:
 # hooks.Filters.IMAGES_PULL.add_item((
-#     "myimage",
-#     "docker.io/myimage:{{ LICENSEMANAGER_VERSION }}",
+#     "license_manager",
+#     "docker.io/license_manager:{{ LICENSE_MANAGER_VERSION }}",
 # )
 # hooks.Filters.IMAGES_PUSH.add_item((
-#     "myimage",
-#     "docker.io/myimage:{{ LICENSEMANAGER_VERSION }}",
+#     "license_manager",
+#     "docker.io/license_manager:{{ LICENSE_MANAGER_VERSION }}",
 # )
 
 
@@ -84,7 +106,7 @@ hooks.Filters.CONFIG_OVERRIDES.add_items(
 hooks.Filters.ENV_TEMPLATE_ROOTS.add_items(
     # Root paths for template files, relative to the project root.
     [
-        pkg_resources.resource_filename("tutorlicensemanager", "templates"),
+        pkg_resources.resource_filename("license_manager", "templates"),
     ]
 )
 
@@ -93,8 +115,8 @@ hooks.Filters.ENV_TEMPLATE_TARGETS.add_items(
     # templates at ``source_path`` (relative to your ENV_TEMPLATE_ROOTS) will be
     # rendered to ``destination_path`` (relative to your Tutor environment).
     [
-        ("licensemanager/build", "plugins"),
-        ("licensemanager/apps", "plugins"),
+        ("license_manager/build", "plugins"),
+        ("license_manager/apps", "plugins"),
     ],
 )
 
@@ -105,11 +127,11 @@ hooks.Filters.ENV_TEMPLATE_TARGETS.add_items(
 #  this section as-is :)
 ########################################
 
-# For each file in tutorlicensemanager/patches,
+# For each file in license_manager/patches,
 # apply a patch based on the file's name and contents.
 for path in glob(
     os.path.join(
-        pkg_resources.resource_filename("tutorlicensemanager", "patches"),
+        pkg_resources.resource_filename("license_manager", "patches"),
         "*",
     )
 ):

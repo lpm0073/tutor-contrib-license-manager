@@ -1,0 +1,15 @@
+license_manager:
+  environment:
+    DJANGO_SETTINGS_MODULE: license_manager.settings.tutor.development
+  command: ./manage.py runserver 0.0.0.0:8150
+  ports:
+    - "127.0.0.1:8150:8150"
+  stdin_open: true
+  tty: true
+  volumes:
+    # editable requirements
+    - ../plugins/license_manager/build/license_manager/requirements:/openedx/requirements
+  networks:
+    default:
+      aliases:
+        - "{{ LICENSE_MANAGER_HOST }}"

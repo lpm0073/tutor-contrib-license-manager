@@ -1,0 +1,37 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: license_manager
+  labels:
+    app.kubernetes.io/name: license_manager
+spec:
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: license_manager
+  template:
+    metadata:
+      labels:
+        app.kubernetes.io/name: license_manager
+    spec:
+      securityContext:
+        runAsUser: 1000
+        runAsGroup: 1000
+      containers:
+        - name: license_manager
+          image: {{ LICENSE_MANAGER_DOCKER_IMAGE }}
+          ports:
+            - containerPort: 8003
+          env:
+            - name: DJANGO_SETTINGS_MODULE
+              value: license_manager.settings.tutor.production
+          volumeMounts:
+            - mountPath: /openedx/license_manager/license_manager/settings/tutor/production.py
+              name: settings
+              subPath: production.py
+          securityContext:
+            allowPrivilegeEscalation: false
+      volumes:
+        - name: settings
+          configMap:
+            name: license_manager-settings

@@ -1,0 +1,7 @@
+# license_manager service
+{{ LICENSE_MANAGER_HOST }}{$default_site_port} {
+    request_body {
+        max_size 10MB
+    }
+    import proxy "license_manager:8003"
+}

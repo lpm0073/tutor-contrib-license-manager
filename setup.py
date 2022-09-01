@@ -13,7 +13,7 @@ def load_readme():
 def load_about():
     about = {}
     with io.open(
-        os.path.join(HERE, "tutorlicensemanager", "__about__.py"),
+        os.path.join(HERE, "license_manager", "__about__.py"),
         "rt",
         encoding="utf-8",
     ) as f:
@@ -34,7 +34,8 @@ setup(
     },
     license="AGPLv3",
     author="Lawrence McDaniel",
-    description="licensemanager plugin for Tutor",
+    author_email="lpm0073@gmail.com",
+    description="A Tutor plugin for Open edX License Manager",
     long_description=load_readme(),
     packages=find_packages(exclude=["tests*"]),
     include_package_data=True,
@@ -42,7 +43,7 @@ setup(
     install_requires=["tutor"],
     entry_points={
         "tutor.plugin.v1": [
-            "licensemanager = tutorlicensemanager.plugin"
+            "license_manager = license_manager.plugin"
         ]
     },
     classifiers=[

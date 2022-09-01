@@ -1,4 +1,4 @@
-licensemanager plugin for `Tutor <https://docs.tutor.overhang.io>`__
+license_manager plugin for `Tutor <https://docs.tutor.overhang.io>`__
 ===================================================================================
 
 Installation
@@ -13,7 +13,7 @@ Usage
 
 ::
 
-    tutor plugins enable licensemanager
+    tutor plugins enable license_manager
 
 
 License

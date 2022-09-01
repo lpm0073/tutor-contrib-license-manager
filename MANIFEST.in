@@ -1,2 +1,2 @@
-recursive-include tutorlicensemanager/patches *
-recursive-include tutorlicensemanager/templates *
+recursive-include license_manager/patches *
+recursive-include license_manager/templates *

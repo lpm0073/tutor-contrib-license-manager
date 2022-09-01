@@ -1,0 +1,25 @@
+---
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: license_manager-job
+  labels:
+    app.kubernetes.io/component: job
+spec:
+  template:
+    spec:
+      restartPolicy: Never
+      containers:
+        - name: license_manager
+          image: {{ LICENSE_MANAGER_DOCKER_IMAGE }}
+          env:
+            - name: DJANGO_SETTINGS_MODULE
+              value: license_manager.settings.tutor.production
+          volumeMounts:
+            - mountPath: /openedx/license_manager/license_manager/settings/tutor/production.py
+              name: settings
+              subPath: production.py
+      volumes:
+        - name: settings
+          configMap:
+            name: license_manager-settings
