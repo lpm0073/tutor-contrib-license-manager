@@ -42,10 +42,6 @@ RUN cd /openedx/requirements/ \
   && touch ./private.txt \
   && pip install -r ./private.txt
 
-#{% for extra_requirement in LICENSE_MANAGER_EXTRA_PIP_REQUIREMENTS %}RUN pip install {{ extra_requirement }}
-#{% endfor %}
-
-
 # Collect static assets (aka: "make static")
 RUN python3 manage.py collectstatic --noinput
 
