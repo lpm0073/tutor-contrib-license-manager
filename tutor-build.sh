@@ -36,19 +36,30 @@ tutor plugins enable ${PLUGIN_NAME}
 # parse and push variables to the terminal. examples:
 #
 #   TUTOR_LICENSE_MANAGER_MYSQL_DATABASE=webstepwisemathai_prod_lm
-#   TUTOR_LICENSE_MANAGER_MYSQL_PASSWORD=super-duper-password
+#   TUTOR_LICENSE_MANAGER_MYSQL_PASSWORD=zQi----secret------T5Q
 #   TUTOR_LICENSE_MANAGER_MYSQL_USERNAME=webstepwisemathai_prod_lm
 #   TUTOR_MYSQL_HOST=stepwisemath-global-live.cqkw93ffci2g.us-east-2.rds.amazonaws.com
 #   TUTOR_MYSQL_PORT=3306
 # -----------------------------------------------------------------------------
 $(kubectl get secret mysql-license-manager -n stepwisemath-global-prod  -o json | jq  '.data | map_values(@base64d)' |   jq -r 'keys[] as $k | "export TUTOR_\($k|ascii_upcase)=\(.[$k])"')
 
+# -----------------------------------------------------------------------------
+# retrieve license-manager-oauth secret from k8s, decode,
+# parse and push variables to the terminal. examples:
+#
+#   TUTOR_LICENSE_MANAGER_OAUTH2_KEY=license-manager-key
+#   TUTOR_LICENSE_MANAGER_OAUTH2_KEY_DEV=license-manager-key-dev
+#   TUTOR_LICENSE_MANAGER_OAUTH2_KEY_SSO=license-manager-key-sso
+#   TUTOR_LICENSE_MANAGER_OAUTH2_KEY_SSO_DEV=license-manager-key-sso-dev
+#   TUTOR_LICENSE_MANAGER_OAUTH2_SECRET=Gfu----secret------FYP
+#   TUTOR_LICENSE_MANAGER_OAUTH2_SECRET_DEV=jpH----secret------T5Q
+#   TUTOR_LICENSE_MANAGER_OAUTH2_SECRET_SSO=zmh-----secret-----6sR
+#   TUTOR_LICENSE_MANAGER_OAUTH2_SECRET_SSO_DEV=IvQ----secret------v7o
+# -----------------------------------------------------------------------------
+$(kubectl get secret license-manager-oauth -n stepwisemath-global-prod  -o json | jq  '.data | map_values(@base64d)' |   jq -r 'keys[] as $k | "export TUTOR_\($k|ascii_upcase)=\(.[$k])"')
+
 tutor config save --set "LICENSE_MANAGER_LMS_HOST=${LMS_HOST}" \
                   --set "LICENSE_MANAGER_HOST=${HOST}" \
-                  --set "LICENSE_MANAGER_OAUTH2_KEY_DEV='dev-key'" \
-                  --set "LICENSE_MANAGER_OAUTH2_SECRET_DEV='dev-secret'" \
-                  --set "LICENSE_MANAGER_OAUTH2_KEY='prod-key'" \
-                  --set "LICENSE_MANAGER_OAUTH2_SECRET='prod-secret'" \
 
 # Docker build / AWS ECR upload
 # ----------------------------------------------
