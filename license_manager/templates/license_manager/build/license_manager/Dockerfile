@@ -74,6 +74,13 @@ RUN ls -lha
 RUN pip install -r requirements/pip.txt
 RUN pip install -r requirements/production.txt
 
+# Install private requirements
+RUN cd /openedx/requirements/ \
+  && touch ./private.txt \
+  && pip install -r ./private.txt
+
+
+
 ###### Production image with system and python requirements
 FROM minimal as production
 
@@ -88,14 +95,6 @@ RUN apt update && \
 ARG APP_USER_ID=1000
 RUN useradd --home-dir /openedx --create-home --shell /bin/bash --uid ${APP_USER_ID} app
 USER ${APP_USER_ID}
-
-# Install private requirements
-COPY --chown=app:app ./requirements/ /openedx/requirements
-RUN cd /openedx/requirements/ \
-  && touch ./private.txt \
-  && pip install -r ./private.txt
-
-
 
 COPY --from=dockerize /usr/local/bin/dockerize /usr/local/bin/dockerize
 COPY --chown=app:app --from=code /openedx/license_manager /openedx/license_manager
