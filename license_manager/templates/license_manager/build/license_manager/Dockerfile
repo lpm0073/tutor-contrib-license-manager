@@ -119,11 +119,6 @@ ENV LICENSE_MANAGER_CFG /openedx/config.yml
 RUN python3 ./manage.py collectstatic --noinput
 
 
-# Copy scripts
-COPY --chown=app:app ./bin /openedx/bin
-RUN chmod a+x /openedx/bin/*
-ENV PATH /openedx/bin:${PATH}
-
 ENV SERVICE_VARIANT license_manager
 ENV DJANGO_SETTINGS_MODULE license_manager.settings.tutor.production
 
