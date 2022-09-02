@@ -15,6 +15,8 @@ RUN apt update && \
     apt install -y build-essential curl git language-pack-en
 ENV LC_ALL en_US.UTF-8
 
+{{ patch("license-manager-dockerfile-minimal") }}
+
 ###### Install python with pyenv in /opt/pyenv and create virtualenv in /openedx/venv
 FROM minimal as python
 # https://github.com/pyenv/pyenv/wiki/Common-build-problems#prerequisites
@@ -79,6 +81,8 @@ WORKDIR /openedx/license_manager
 # https://pypi.org/project/uWSGI/
 RUN pip install uwsgi==2.0.20
 
+{{ patch("license-manager-dockerfile-post-python-requirements") }}
+
 # Dependencies are installed as root so they cannot be modified by the application user.
 RUN ls -lha
 RUN pip install -r requirements/pip.txt
@@ -123,6 +127,8 @@ WORKDIR /openedx/license_manager
 RUN echo "{}" > /openedx/config.yml
 ENV LICENSE_MANAGER_CFG /openedx/config.yml
 
+{{ patch("license-manager-dockerfile-pre-assets") }}
+
 # Collect static assets (aka: "make static")
 RUN python3 ./manage.py collectstatic --noinput
 
@@ -134,6 +140,8 @@ ENV PATH /openedx/bin:${PATH}
 
 ENV SERVICE_VARIANT license_manager
 ENV DJANGO_SETTINGS_MODULE license_manager.settings.tutor.production
+
+{{ patch("license-manager-dockerfile") }}
 
 EXPOSE 8000
 
@@ -151,3 +159,5 @@ CMD uwsgi \
     --processes=${UWSGI_WORKERS:-2} \
     --buffer-size=8192 \
     --wsgi-file $SERVICE_VARIANT/wsgi.py
+
+{{ patch("license-manager-dockerfile-final") }}
