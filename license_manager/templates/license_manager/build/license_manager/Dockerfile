@@ -73,11 +73,7 @@ RUN pip install uwsgi==2.0.20
 RUN ls -lha
 RUN pip install -r requirements/pip.txt
 RUN pip install -r requirements/production.txt
-
-# Install private requirements
-RUN cd /openedx/requirements/ \
-  && touch ./private.txt \
-  && pip install -r ./private.txt
+RUN touch requirements/private.txt && pip install -r requirements/private.txt
 
 
 
