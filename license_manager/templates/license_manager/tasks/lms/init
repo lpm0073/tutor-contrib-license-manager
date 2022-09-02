@@ -1,3 +1,17 @@
+#!/bin/bash
+#------------------------------------------------------------------------------
+# written by: Lawrence McDaniel
+#             https://lawrencemcdaniel.com
+#
+# date:       aug-2022
+#
+# usage:      initialize lms Django settings.
+#             - create a user account in lms
+#             - create an oauth application in lms for authentication
+#------------------------------------------------------------------------------
+
+dockerize -wait tcp://{{ MYSQL_HOST }}:{{ MYSQL_PORT }} -timeout 20s
+
 # Modify users created with an incorrect email and that might clash with the newly created users
 ./manage.py lms shell -c \
   "from django.contrib.auth import get_user_model;\
@@ -8,9 +22,9 @@
 # Development client
 ./manage.py lms create_dot_application \
     --grant-type client-credentials \
-    --redirect-uris "http://{{ LICENSE_MANAGER_HOST }}:8003/complete/edx-oauth2/" \
+    --redirect-uris "http://{{ LICENSE_MANAGER_HOST }}:8000/complete/edx-oauth2/" \
     --client-id {{ LICENSE_MANAGER_OAUTH2_KEY_DEV }} \
-    --client-secret {{ LICENSE_MANAGER_OAUTH2_SECRET }} \
+    --client-secret {{ LICENSE_MANAGER_OAUTH2_SECRET_DEV }} \
     --scopes user_id \
     --skip-authorization \
     --update \
@@ -18,9 +32,9 @@
     license_manager
 ./manage.py lms create_dot_application \
     --grant-type authorization-code \
-    --redirect-uris "http://{{ LICENSE_MANAGER_HOST }}:8003/complete/edx-oauth2/" \
+    --redirect-uris "http://{{ LICENSE_MANAGER_HOST }}:8000/complete/edx-oauth2/" \
     --client-id {{ LICENSE_MANAGER_OAUTH2_KEY_SSO_DEV }} \
-    --client-secret {{ LICENSE_MANAGER_OAUTH2_SECRET_SSO }} \
+    --client-secret {{ LICENSE_MANAGER_OAUTH2_SECRET_SSO_DEV }} \
     --scopes user_id \
     --skip-authorization \
     --update \

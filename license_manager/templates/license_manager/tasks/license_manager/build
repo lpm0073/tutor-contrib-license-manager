@@ -1,1 +1,10 @@
-# hook to add git clone of repo.
+#!/bin/bash
+#------------------------------------------------------------------------------
+# written by: Lawrence McDaniel
+#             https://lawrencemcdaniel.com
+#
+# date:       aug-2022
+#
+# usage:      hook to add git clone of repo.
+#------------------------------------------------------------------------------
+

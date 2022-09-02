@@ -1,2 +1,17 @@
+#!/bin/bash
+#------------------------------------------------------------------------------
+# written by: Lawrence McDaniel
+#             https://lawrencemcdaniel.com
+#
+# date:       aug-2022
+#
+# usage:      run database migrations once mysql is up and running.
+#------------------------------------------------------------------------------
+
 echo "license_manager service - ./manage.py migrate"
+
+dockerize -wait tcp://{{ MYSQL_HOST }}:{{ MYSQL_PORT }} -timeout 20s
+
+echo "Loading settings $DJANGO_SETTINGS_MODULE"
+
 ./manage.py migrate --noinput
