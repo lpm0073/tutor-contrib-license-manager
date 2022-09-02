@@ -21,7 +21,7 @@ spec:
         - name: license_manager
           image: {{ LICENSE_MANAGER_DOCKER_IMAGE }}
           ports:
-            - containerPort: 8003
+            - containerPort: 8000
           env:
             - name: DJANGO_SETTINGS_MODULE
               value: license_manager.settings.tutor.production

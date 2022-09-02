@@ -3,5 +3,5 @@
     request_body {
         max_size 10MB
     }
-    import proxy "license_manager:8003"
+    import proxy "license_manager:8000"
 }
