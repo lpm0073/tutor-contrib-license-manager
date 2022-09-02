@@ -50,20 +50,6 @@ RUN mkdir -p /openedx/license_manager && \
     git clone $LICENSE_REPOSITORY_REPOSITORY --branch $LICENSE_MANAGER_VERSION --depth 1 /openedx/license_manager
 WORKDIR /openedx/license_manager
 
-###### Download extra locales to /openedx/locale/contrib/locale
-FROM minimal as locales
-# TODO Due to a bug in the transifex generation process, we cannot pull the translation
-# strings from nutmeg.1. We'll be able to pull them once they have been pushed to
-# Transifex.
-# ARG OPENEDX_I18N_VERSION={{ OPENEDX_COMMON_VERSION }}
-ARG OPENEDX_I18N_VERSION=open-release/nutmeg.master
-RUN cd /tmp \
-    && curl -L -o openedx-i18n.tar.gz https://github.com/openedx/openedx-i18n/archive/$OPENEDX_I18N_VERSION.tar.gz \
-    && tar xzf /tmp/openedx-i18n.tar.gz \
-    && mkdir -p /openedx/locale/contrib \
-    && mv openedx-i18n-*/license_manager/locale /openedx/locale/contrib \
-    && rm -rf openedx-i18n*
-
 ###### Install python requirements in virtualenv
 FROM python as python-requirements
 ENV PATH /openedx/venv/bin:${PATH}
