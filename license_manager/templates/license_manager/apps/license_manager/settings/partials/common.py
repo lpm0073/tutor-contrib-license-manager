@@ -99,7 +99,7 @@ DATABASES = {
 }
 
 # reconfigure logging and Get rid of local logger
-LOGGING = get_logger_config(debug=False, dev_env=True, local_loglevel="INFO")
+LOGGING = get_logger_config(debug=False, dev_env=True)
 LOGGING["handlers"].pop("local")
 for logger in LOGGING["loggers"].values():
     if "local" in logger["handlers"]:
