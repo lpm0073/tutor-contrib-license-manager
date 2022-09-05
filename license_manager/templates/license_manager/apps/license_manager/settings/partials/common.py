@@ -100,10 +100,24 @@ DATABASES = {
 
 # reconfigure logging and Get rid of local logger
 LOGGING = get_logger_config(debug=False, dev_env=True)
-LOGGING["handlers"].pop("local")
-for logger in LOGGING["loggers"].values():
-    if "local" in logger["handlers"]:
-        logger["handlers"].remove("local")
+
+# mcdaniel aug-2022: currently there is no 'local' handler, but
+# most open edx module have this, so we'll keep this snippet
+# in case a local handler materializes in the future.
+try:
+    LOGGING["handlers"].pop("local")
+except Exception:
+    pass
+
+# mcdaniel aug-2022: wrapping this in a try bc testing
+# is a sloooooooooow process.
+try:
+    for logger in LOGGING["loggers"].values():
+        if "local" in logger["handlers"]:
+            logger["handlers"].remove("local")
+except Exception:
+    pass
+
 
 {{ patch("license-manager-settings-common") }}
 
