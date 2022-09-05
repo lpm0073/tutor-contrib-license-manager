@@ -6,6 +6,7 @@
 # usage:        build the docker image. this is based on
 #               https://github.com/overhangio/tutor/blob/master/tutor/templates/build/openedx/Dockerfile
 #------------------------------------------------------------------------------
+
 ###### Minimal image with base system requirements for most stages
 FROM docker.io/ubuntu:20.04 as minimal
 LABEL maintainer="Lawrence McDaniel <lpm0073@gmail.com>"
@@ -78,8 +79,6 @@ COPY ./requirements/ /openedx/requirements
 RUN cd /openedx/requirements/ \
   && touch ./private.txt \
   && pip install -r ./private.txt
-
-
 
 ###### Production image with system and python requirements
 FROM minimal as production
