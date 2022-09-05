@@ -17,11 +17,13 @@ hooks.Filters.CONFIG_DEFAULTS.add_items(
         # Each new setting is a pair: (setting_name, default_value).
         # Prefix your setting names with 'LICENSE_MANAGER_'.
         ("LICENSE_MANAGER_VERSION", __version__),
-        ("SOCIAL_AUTH_REDIRECT_IS_HTTPS", False),
-        ("SOCIAL_AUTH_EDX_OAUTH2_ISSUER", "https://{{ LICENSE_MANAGER_LMS_HOST }}"),
-        ("SOCIAL_AUTH_EDX_OAUTH2_URL_ROOT", "http://lms:8000"),
-        ("SOCIAL_AUTH_EDX_OAUTH2_KEY", "license-manager-sso-key"),
-        ("SOCIAL_AUTH_EDX_OAUTH2_LOGOUT_URL", "{{ LICENSE_MANAGER_LMS_HOST }}/logout"),
+        ("LICENSE_MANAGER_HOST", "subscriptions.{{ LMS_HOST }}"),
+        ("LICENSE_MANAGER_MYSQL_DATABASE", "license_manager"),
+        ("LICENSE_MANAGER_MYSQL_USERNAME", "license_manager"),
+        ("LICENSE_MANAGER_OAUTH2_KEY", "license-manager-key"),
+        ("LICENSE_MANAGER_OAUTH2_KEY_DEV", "license-manager-key-dev"),
+        ("LICENSE_MANAGER_OAUTH2_KEY_SSO", "license-manager-key-sso"),
+        ("LICENSE_MANAGER_OAUTH2_KEY_SSO_DEV", "license-manager-key-sso-dev"),
     ]
 )
 
@@ -33,11 +35,15 @@ hooks.Filters.CONFIG_UNIQUE.add_items(
         # Prefix your setting names with 'LICENSE_MANAGER_'.
         # For example:
         # ("LICENSE_MANAGER_SECRET_KEY", "{{ 24|random_string }}"),
-        ("MYSQL_PASSWORD", "{{ 8|random_string }}"),
-        ("OAUTH2_SECRET", "{{ 16|random_string }}"),
-        ("SECRET_KEY", "{{ 24|random_string }}"),
-        ("SOCIAL_AUTH_EDX_OAUTH2_SECRET", "{{ 16|random_string }}"),
-        ("BACKEND_SERVICE_EDX_OAUTH2_SECRET", "{{ 16|random_string }}"),
+        ("LICENSE_MANAGER_MYSQL_PASSWORD", "{{ 8|random_string }}"),
+        ("LICENSE_MANAGER_OAUTH2_SECRET", "{{ 16|random_string }}"),
+        ("LICENSE_MANAGER_SECRET_KEY", "{{ 24|random_string }}"),
+        ("LICENSE_MANAGER_SOCIAL_AUTH_EDX_OAUTH2_SECRET", "{{ 16|random_string }}"),
+        ("LICENSE_MANAGER_BACKEND_SERVICE_EDX_OAUTH2_SECRET", "{{ 16|random_string }}"),
+        ("LICENSE_MANAGER_OAUTH2_SECRET", "{{ 16|random_string }}"),
+        ("LICENSE_MANAGER_OAUTH2_SECRET_DEV", "{{ 16|random_string }}"),
+        ("LICENSE_MANAGER_OAUTH2_SECRET_SSO", "{{ 16|random_string }}"),
+        ("LICENSE_MANAGER_OAUTH2_SECRET_SSO_DEV", "{{ 16|random_string }}"),
     ]
 )
 

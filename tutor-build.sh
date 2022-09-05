@@ -5,11 +5,15 @@
 #
 # date:       aug-2022
 #
-# usage:      run this from inside your Cookiecutter openedx_devops Bastion server,
-#             or any Ubuntu environment with tutor, docker ce, aws cli, jq.
+# usage:      i use this during development. This is intended to run from
+#             inside your Cookiecutter openedx_devops Bastion server,
+#             or any Ubuntu environment with tutor, docker ce, aws cli, and jq.
 #
-#             Builds and uploads the Docker container to AWS ECR.
+#             Build and upload the Docker container to AWS ECR.
 #------------------------------------------------------------------------------
+echo "using aws cli key/secret in ~/aws/credentials"
+echo "using docker authentication token in ~/.docker/config.json"
+
 AWS_REGION="us-east-2"
 AWS_ACCOUNT_NUMBER=$(aws ecr describe-registry | jq -r '.registryId')
 AWS_ECR_REGISTRY="${AWS_ACCOUNT_NUMBER}.dkr.ecr.${AWS_REGION}.amazonaws.com"
