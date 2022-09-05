@@ -118,7 +118,6 @@ ENV LICENSE_MANAGER_CFG /openedx/config.yml
 RUN python3 ./manage.py collectstatic --noinput
 
 
-ENV SERVICE_VARIANT license_manager
 ENV DJANGO_SETTINGS_MODULE license_manager.settings.tutor.production
 
 {{ patch("license-manager-dockerfile") }}
