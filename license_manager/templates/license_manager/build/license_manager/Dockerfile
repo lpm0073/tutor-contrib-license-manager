@@ -115,7 +115,9 @@ ENV LICENSE_MANAGER_CFG /openedx/config.yml
 {{ patch("license-manager-dockerfile-pre-assets") }}
 
 # Collect static assets (aka: "make static")
-RUN python3 ./manage.py collectstatic --noinput
+COPY --chown=app:app assets.py ./license_manager/settings/assets.py
+ENV DJANGO_SETTINGS_MODULE license_manager.settings.assets
+RUN python3 manage.py collectstatic --noinput
 
 
 ENV DJANGO_SETTINGS_MODULE license_manager.settings.tutor.production
