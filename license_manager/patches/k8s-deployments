@@ -18,7 +18,7 @@ spec:
         runAsUser: 1000
         runAsGroup: 1000
       containers:
-        - name: license_manager
+        - name: license-manager
           image: {{ LICENSE_MANAGER_DOCKER_IMAGE }}
           ports:
             - containerPort: 8000
