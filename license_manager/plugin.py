@@ -76,7 +76,7 @@ hooks.Filters.COMMANDS_INIT.add_item(
 )
 hooks.Filters.COMMANDS_INIT.add_item(
     (
-        "license_manager",
+        "license-manager",
         ("license_manager", "tasks", "license_manager", "init"),
     )
 )
