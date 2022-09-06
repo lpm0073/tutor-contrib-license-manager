@@ -45,10 +45,13 @@ This plugin does the following:
 - automated MySQL integration, including creation and migration of the database itself, mysql service account and any permissions
 - automated oauth setup using the LMS as the oauth provider
 - fully automated Kubernetes deployment
-- TO DO: add syncronizatoin of MySQL user accounts
+- TO DO: add syncronization of MySQL user accounts
 - TO DO: add creation of an admin account
 
-Also, note this `Getting Started <https://github.com/openedx/license-manager/blob/master/docs/getting_started.rst>`__ guide.
+Getting Started
+---------------
+Note this `Getting Started <https://github.com/openedx/license-manager/blob/master/docs/getting_started.rst>`__ guide from the License Manager repo.
+Also note that there's a helper script in the root of this repo, `tutor-build.sh <./tutor-build.sh>`__ that you can use as a guide for basic operations.
 
 Installation
 ------------
