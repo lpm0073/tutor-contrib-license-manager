@@ -35,10 +35,18 @@ License Manager plugin for Tutor
 
 |
 
-This is a plugin for `Tutor <https://docs.tutor.overhang.io>`__ that integrates the `License Manager <https://github.com/openedx/license-manager>`__ service in an Open edX platform. For further instructions on how to setup License Manager with Open edX, check the `official License Manager documentation <https://github.com/openedx/license-manager/tree/master/docs/>`__.
+This is a plugin for `Tutor <https://docs.tutor.overhang.io>`__ that integrates the `License Manager <https://github.com/openedx/license-manager>`__ service in an Open edX platform.
+License Manager provides supplmental e-commerce service such as monthly subscription payment options. For further instructions on how to setup License Manager with Open edX, check the `official License Manager documentation <https://github.com/openedx/license-manager/tree/master/docs/>`__.
 
 Installation
 ------------
+
+This plugin requires tutor>=14.0.5, the `E-commerce plugin <https://github.com/overhangio/tutor-ecommerce>`__, the `Discovery plugin <https://github.com/overhangio/tutor-discovery>`__, the `MFE plugin <https://github.com/overhangio/tutor-mfe>`__.
+If you have installed Tutor by downloading the pre-compiled binary, then both plugins should be automatically installed. You can confirm by running::
+
+.. code-block:: shell
+
+    tutor plugins list
 
 Linux & macOS command line
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
