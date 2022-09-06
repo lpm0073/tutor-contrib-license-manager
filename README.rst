@@ -41,7 +41,7 @@ License Manager provides supplmental e-commerce service such as monthly subscrip
 Installation
 ------------
 
-This plugin requires tutor>=14.0.5, the `E-commerce plugin <https://github.com/overhangio/tutor-ecommerce>`__ which, in turn requires the `Discovery plugin <https://github.com/overhangio/tutor-discovery>`__, and the `MFE plugin <https://github.com/overhangio/tutor-mfe>`__.
+This plugin requires tutor>=14.0.5, the `E-commerce plugin <https://github.com/overhangio/tutor-ecommerce>`__ which itself requires the `Discovery plugin <https://github.com/overhangio/tutor-discovery>`__, and the `MFE plugin <https://github.com/overhangio/tutor-mfe>`__.
 If you have installed Tutor by downloading the pre-compiled binary, then both the Discovery and MFE plugins should be automatically installed. You can confirm by running:
 
 .. code-block:: shell
