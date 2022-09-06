@@ -61,7 +61,7 @@ This plugins is compatible with `Kubernetes integration <http://docs.tutor.overh
 **Github Actions**
 
 - `Build <https://github.com/openedx-actions/tutor-plugin-build-license-manager>`__
-- `Deploy <https://github.com/openedx-actions/tutor-enable-plugin-license-manager>__
+- `Deploy <https://github.com/openedx-actions/tutor-enable-plugin-license-manager>`__
 
 **Cookiecutter Tutor Open edX Production Devops Tools**
 
