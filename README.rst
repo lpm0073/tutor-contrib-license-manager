@@ -60,12 +60,11 @@ This plugins is compatible with `Kubernetes integration <http://docs.tutor.overh
 
 **Github Actions**
 
-- `Build <https://github.com/openedx-actions/tutor-plugin-build-license-manager>`__
-- `Deploy <https://github.com/openedx-actions/tutor-enable-plugin-license-manager>`__
+The following actions, available in the Github Actions Marketplace, offer seamless integration with Kubernetes platforms created with `Cookiecutter Tutor Open edX Production Devops Tools <https://github.com/lpm0073/cookiecutter-openedx-devops>`__
 
-**Cookiecutter Tutor Open edX Production Devops Tools**
+- `Build <https://github.com/openedx-actions/tutor-plugin-build-license-manager>`__: automated Docker container build and upload to AWS Elastic Container Registry
+- `Deploy <https://github.com/openedx-actions/tutor-enable-plugin-license-manager>`__: automated deployment to AWS Elastic Kubernetes Service
 
-The Open edX License Manager service is available as a preconfigured feature flag in `Cookiecutter <https://github.com/lpm0073/cookiecutter-openedx-devops>`__
 
 Configuration
 ------------
