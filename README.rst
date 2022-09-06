@@ -35,7 +35,7 @@ License Manager plugin for Tutor
 
 |
 
-This is a plugin for [Tutor](https://docs.tutor.overhang.io) that integrates the [License Manager](https://github.com/openedx/license-manager/) service in an Open edX platform. For further instructions on how to setup License Manager with Open edX, check the `official License Manager documentation <https://github.com/openedx/license-manager/tree/master/docs/>`__.
+This is a plugin for `Tutor <https://docs.tutor.overhang.io>`__ that integrates the `License Manager <https://github.com/openedx/license-manager>`__ service in an Open edX platform. For further instructions on how to setup License Manager with Open edX, check the `official License Manager documentation <https://github.com/openedx/license-manager/tree/master/docs/>`__.
 
 Installation
 ------------
@@ -43,18 +43,20 @@ Installation
 Linux & macOS command line
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-```bash
+.. code-block:: shell
+
     pip install git+https://github.com/lpm0073/tutor-contrib-license-manager
-```
+
 
 Kubernetes
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 This plugins is compatible with `Kubernetes integration <http://docs.tutor.overhang.io/k8s.html>`__. When deploying to a Kubernetes cluster, run instead::
 
-```bash
+.. code-block:: shell
+
     tutor k8s quickstart
-```
+
 
 **Github Actions**
 
@@ -96,9 +98,10 @@ Optional parameters
 Usage
 ------------
 
-```bash
+.. code-block:: shell
+
     tutor plugins enable license_manager
-```
+
 
 License
 ------------
