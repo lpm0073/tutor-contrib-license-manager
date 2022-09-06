@@ -48,13 +48,8 @@ This plugin provides the following build and deployment services:
 - TO DO: add syncronization of MySQL user accounts
 - TO DO: add creation of an admin account
 
-Getting Started
----------------
-Note this `Getting Started <https://github.com/openedx/license-manager/blob/master/docs/getting_started.rst>`__ guide from the License Manager repo.
-Also note that there's a helper script in the root of this repo, `tutor-build.sh <./tutor-build.sh>`__ that you can use as a guide for basic operations.
-
-Installation
-------------
+Installation and basic usage
+----------------------------
 
 This plugin requires tutor>=14.0.5, the `E-commerce plugin <https://github.com/overhangio/tutor-ecommerce>`__ which itself requires the `Discovery plugin <https://github.com/overhangio/tutor-discovery>`__, and the `MFE plugin <https://github.com/overhangio/tutor-mfe>`__.
 If you have installed Tutor by downloading the pre-compiled binary, then both the Discovery and MFE plugins should be automatically installed. You can confirm by running:
@@ -62,6 +57,8 @@ If you have installed Tutor by downloading the pre-compiled binary, then both th
 .. code-block:: shell
 
     tutor plugins list
+
+Note that there's a helper script in the root of this repo, `tutor-build.sh <./tutor-build.sh>`__ that you can use as a guide for basic operations.
 
 Linux & macOS command line
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -106,6 +103,8 @@ The following actions, available in the Github Actions Marketplace, offer seamle
 
 Plugin Configuration
 ------------
+
+Note this `Getting Started <https://github.com/openedx/license-manager/blob/master/docs/getting_started.rst>`__ guide from the License Manager repo.
 
 Required parameters
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
