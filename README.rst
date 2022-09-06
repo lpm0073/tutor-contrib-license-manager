@@ -97,8 +97,8 @@ Github Actions
 
 The following actions, available in the Github Actions Marketplace, offer seamless, secure integration with Kubernetes platforms running on AWS created with `Cookiecutter Tutor Open edX Production Devops Tools <https://github.com/lpm0073/cookiecutter-openedx-devops>`__
 
-- `Build <https://github.com/marketplace/actions/open-edx-tutor-k8s-build-license-manager-plugin>`__: automated Docker container build and upload to AWS Elastic Container Registry
-- `Deploy <https://github.com/marketplace/actions/open-edx-tutor-k8s-enable-license-manager-plugin>`__: automated deployment to AWS Elastic Kubernetes Service
+- `Build <https://github.com/marketplace/actions/open-edx-tutor-k8s-build-license-manager-plugin>`__: automated License Manager Docker container build and upload to AWS Elastic Container Registry
+- `Deploy <https://github.com/marketplace/actions/open-edx-tutor-k8s-enable-license-manager-plugin>`__: automated License Manager deployment to AWS Elastic Kubernetes Service
 
 
 Plugin Configuration
