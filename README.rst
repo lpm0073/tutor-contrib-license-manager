@@ -105,6 +105,19 @@ Plugin Configuration
 ------------
 
 Note this `Getting Started <https://github.com/openedx/license-manager/blob/master/docs/getting_started.rst>`__ guide from the License Manager repo.
+The official READTHEDOCS link is broken, but you can generate the documentation locally:
+
+.. code-block:: shell
+
+    git clone git@github.com:openedx/license-manager.git
+    cd license-manager/
+    mkvirtualenv license-manager
+    make requirements
+    make doc_requirements
+    cd docs/
+    make html
+
+License Manager uses `Waffle <http://waffle.readthedocs.org/en/latest/>`__ for feature toggling and `Transifex <https://www.transifex.com/>`__ for internationalization.
 
 Required parameters
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
