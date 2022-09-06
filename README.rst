@@ -38,10 +38,10 @@ Open edX License Manager plugin for Tutor
 This is a plugin for `Tutor <https://docs.tutor.overhang.io>`__ that integrates the `License Manager <https://github.com/openedx/license-manager>`__ service in an Open edX platform.
 License Manager provides supplmental e-commerce service such as monthly subscription payment options. For further instructions on how to setup License Manager with Open edX, check the `official License Manager documentation <https://github.com/openedx/license-manager/tree/master/docs/>`__.
 
-This plugin does the following:
+This plugin provides the following build and deployment services:
 
-- License Manager software installation
-- 1-click style Docker container build and push capability, including setup of Python virtual environment and static asset collection
+- Docker-based License Manager software installation
+- 1-click style Docker container build and push capability to your container repository, including setup of Python virtual environment and static asset collection
 - automated MySQL integration, including creation and migration of the database itself, mysql service account and any permissions
 - automated oauth setup using the LMS as the oauth provider
 - fully automated Kubernetes deployment
@@ -98,13 +98,13 @@ Github Actions
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 
-The following actions, available in the Github Actions Marketplace, offer seamless integration with Kubernetes platforms created with `Cookiecutter Tutor Open edX Production Devops Tools <https://github.com/lpm0073/cookiecutter-openedx-devops>`__
+The following actions, available in the Github Actions Marketplace, offer seamless, secure integration with Kubernetes platforms running on AWS created with `Cookiecutter Tutor Open edX Production Devops Tools <https://github.com/lpm0073/cookiecutter-openedx-devops>`__
 
 - `Build <https://github.com/marketplace/actions/open-edx-tutor-k8s-build-license-manager-plugin>`__: automated Docker container build and upload to AWS Elastic Container Registry
 - `Deploy <https://github.com/marketplace/actions/open-edx-tutor-k8s-enable-license-manager-plugin>`__: automated deployment to AWS Elastic Kubernetes Service
 
 
-Configuration
+Plugin Configuration
 ------------
 
 Required parameters
