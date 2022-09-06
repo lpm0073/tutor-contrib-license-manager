@@ -42,9 +42,11 @@ This plugin does the following:
 
 - License Manager software installation
 - 1-click style Docker container build and push capability, including setup of Python virtual environment and static asset collection
-- automated MySQL integration, including creation and migration of the database itself, service account and permissions
+- automated MySQL integration, including creation and migration of the database itself, mysql service account and any permissions
 - automated oauth setup using the LMS as the oauth provider
 - fully automated Kubernetes deployment
+- TO DO: add syncronizatoin of MySQL user accounts
+- TO DO: add creation of an admin account
 
 Also, note this `Getting Started <https://github.com/openedx/license-manager/blob/master/docs/getting_started.rst>`__ guide.
 
