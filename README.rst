@@ -45,7 +45,17 @@ Linux & macOS command line
 
 .. code-block:: shell
 
+    # install this repo to your Python virtual environment
     pip install git+https://github.com/lpm0073/tutor-contrib-license-manager
+
+    # enable the plugin
+    tutor plugins enable license_manager
+
+    # build a Docker container
+    tutor images build license_manager
+
+    # configure this plugin
+    tutor config save --set LICENSE_MANAGER_DOCKER_IMAGE="https://path-to-your-docker-container:latest"
 
 
 Kubernetes
@@ -58,7 +68,9 @@ This plugins is compatible with `Kubernetes integration <http://docs.tutor.overh
     tutor k8s quickstart
 
 
-**Github Actions**
+Github Actions
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
 
 The following actions, available in the Github Actions Marketplace, offer seamless integration with Kubernetes platforms created with `Cookiecutter Tutor Open edX Production Devops Tools <https://github.com/lpm0073/cookiecutter-openedx-devops>`__
 
@@ -93,14 +105,6 @@ Optional parameters
 - LICENSE_MANAGER_OAUTH2_SECRET_DEV (default: {{ 16|random_string }})
 - LICENSE_MANAGER_OAUTH2_SECRET_SSO (default: {{ 16|random_string }})
 - LICENSE_MANAGER_OAUTH2_SECRET_SSO_DEV (default: {{ 16|random_string }}
-
-Usage
-------------
-
-.. code-block:: shell
-
-    tutor plugins enable license_manager
-
 
 License
 ------------
