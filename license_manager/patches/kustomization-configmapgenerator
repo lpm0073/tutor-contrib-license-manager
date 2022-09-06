@@ -1,3 +1,11 @@
+#------------------------------------------------------------------------------
+# written by:   Lawrence McDaniel
+#               https://lawrencemcdaniel.com
+#
+# date:         aug-2022
+#
+# usage:        for Kubernetes deployments. Add additional configMap entries here.
+#------------------------------------------------------------------------------
 - name: license-manager-settings
   files:
     - plugins/license_manager/apps/license_manager/settings/production.py

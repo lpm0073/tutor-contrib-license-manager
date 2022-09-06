@@ -1,2 +1,11 @@
+#------------------------------------------------------------------------------
+# written by:   Lawrence McDaniel
+#               https://lawrencemcdaniel.com
+#
+# date:         aug-2022
+#
+# usage:        hook for custom Django production settings.
+#------------------------------------------------------------------------------
+
 LICENSE_MANAGER_PUBLIC_URL_ROOT = "{% if ENABLE_HTTPS %}https{% else %}http{% endif %}://{{ LICENSE_MANAGER_HOST }}"
 LICENSE_MANAGER_API_URL = LICENSE_MANAGER_PUBLIC_URL_ROOT + "/api/v2"

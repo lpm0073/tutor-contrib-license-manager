@@ -17,28 +17,26 @@ echo "Loading settings $DJANGO_SETTINGS_MODULE"
 ./manage.py migrate --noinput
 
 # mcdaniel aug-2022
-#
-# FIX NOTE:
 # not sure how necessary this really is, but just to be on the safe side we're
 # syncing the License Manager user list to that of the LMS.
-# echo "sync license_manager.core_user to openedx.auth_user"
-# mysql -u {{ MYSQL_ROOT_USERNAME }} --password="{{ MYSQL_ROOT_PASSWORD }}" --host "{{ MYSQL_HOST }}" --port {{ MYSQL_PORT }} -e "\
-# INSERT license_manager.core_user (password, last_login, is_superuser, username, first_name, last_name, email, is_staff, is_active, date_joined, full_name, lms_user_id) \
-#      SELECT     lms_user.password, \
-#                lms_user.last_login, \
-#                lms_user.is_superuser, \
-#                lms_user.username, \
-#                lms_user.first_name, \
-#                lms_user.last_name, \
-#                lms_user.email, \
-#                lms_user.is_staff, \
-#                lms_user.is_active, \
-#                lms_user.date_joined, \
-#                CASE WHEN NOT ISNULL(lms_profile.name) THEN lms_profile.name ELSE lms_user.first_name + ' ' + lms_user.last_name END as full_name, \
-#                lms_user.id as lms_user_id \
-#      FROM     openedx.auth_user lms_user \
-#                LEFT JOIN openedx.auth_userprofile as lms_profile ON (lms_user.id = lms_profile.user_id) \
-#                LEFT JOIN license_manager.core_user credentials_user ON (lms_user.id = credentials_user.lms_user_id) \
-#                LEFT JOIN license_manager.core_user credentials_user2 ON (lms_user.username = credentials_user2.username) \
-#      WHERE     (credentials_user.id IS NULL) AND \
-#                (credentials_user2.username IS NULL);"
+echo "sync license_manager.core_user to {{ OPENEDX_MYSQL_DATABASE }}.auth_user"
+mysql -u {{ MYSQL_ROOT_USERNAME }} --password="{{ MYSQL_ROOT_PASSWORD }}" --host "{{ MYSQL_HOST }}" --port {{ MYSQL_PORT }} -e "\
+INSERT {{ LICENSE_MANAGER_MYSQL_DATABASE }}.core_user (password, last_login, is_superuser, username, first_name, last_name, email, is_staff, is_active, date_joined, full_name, lms_user_id) \
+     SELECT    lms_user.password, \
+               lms_user.last_login, \
+               lms_user.is_superuser, \
+               lms_user.username, \
+               lms_user.first_name, \
+               lms_user.last_name, \
+               lms_user.email, \
+               lms_user.is_staff, \
+               lms_user.is_active, \
+               lms_user.date_joined, \
+               CASE WHEN NOT ISNULL(lms_profile.name) THEN lms_profile.name ELSE lms_user.first_name + ' ' + lms_user.last_name END as full_name, \
+               lms_user.id as lms_user_id \
+     FROM     {{ OPENEDX_MYSQL_DATABASE }}.auth_user lms_user \
+               LEFT JOIN {{ OPENEDX_MYSQL_DATABASE }}.auth_userprofile as lms_profile ON (lms_user.id = lms_profile.user_id) \
+               LEFT JOIN {{ LICENSE_MANAGER_MYSQL_DATABASE }}.core_user credentials_user ON (lms_user.id = credentials_user.lms_user_id) \
+               LEFT JOIN {{ LICENSE_MANAGER_MYSQL_DATABASE }}.core_user credentials_user2 ON (lms_user.username = credentials_user2.username) \
+     WHERE     (credentials_user.id IS NULL) AND \
+               (credentials_user2.username IS NULL);"

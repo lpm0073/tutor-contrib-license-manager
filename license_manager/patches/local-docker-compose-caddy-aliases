@@ -1,1 +1,9 @@
+#------------------------------------------------------------------------------
+# written by:   Lawrence McDaniel
+#               https://lawrencemcdaniel.com
+#
+# date:         aug-2022
+#
+# usage:        i do not know what this does or why it is necessary.
+#------------------------------------------------------------------------------
 - {{ LICENSE_MANAGER_HOST }}

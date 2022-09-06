@@ -1,3 +1,11 @@
+#------------------------------------------------------------------------------
+# written by:   Lawrence McDaniel
+#               https://lawrencemcdaniel.com
+#
+# date:         aug-2022
+#
+# usage:        templating for local Dockerfile patch?
+#------------------------------------------------------------------------------
 license-manager:
   image: {{ LICENSE_MANAGER_DOCKER_IMAGE }}
   environment:
