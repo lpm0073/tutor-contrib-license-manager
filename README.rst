@@ -55,7 +55,10 @@ Linux & macOS command line
     tutor images build license_manager
 
     # configure this plugin
-    tutor config save --set LICENSE_MANAGER_DOCKER_IMAGE="https://path-to-your-docker-container:latest"
+    tutor config save --set LICENSE_MANAGER_DOCKER_IMAGE="https://*******.dkr.ecr.us-east-2.amazonaws.com/license_manager:latest"  \
+                      --set LICENSE_MANAGER_MYSQL_DATABASE="schoolofrock-lm"  \
+                      --set LICENSE_MANAGER_MYSQL_PASSWOR="str0ng-@s-@n-0x"  \
+                      --set LICENSE_MANAGER_MYSQL_USERNAME="lm-admin"
 
 
 Kubernetes
