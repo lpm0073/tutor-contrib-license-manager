@@ -48,7 +48,7 @@ This plugin provides the following build and deployment services:
 - TO DO: add syncronization of MySQL user accounts
 - TO DO: add creation of an admin account
 
-Installation and basic usage
+Installation and Usage
 ----------------------------
 
 This plugin requires tutor>=14.0.5, the `E-commerce plugin <https://github.com/overhangio/tutor-ecommerce>`__ which itself requires the `Discovery plugin <https://github.com/overhangio/tutor-discovery>`__, and the `MFE plugin <https://github.com/overhangio/tutor-mfe>`__.
