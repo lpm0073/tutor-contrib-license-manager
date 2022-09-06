@@ -1,5 +1,5 @@
-License Manager plugin for Tutor
-=====================================
+Open edX License Manager plugin for Tutor
+=========================================
 .. image:: https://img.shields.io/badge/hack.d-Lawrence%20McDaniel-orange.svg
   :target: https://lawrencemcdaniel.com
   :alt: Hack.d Lawrence McDaniel
