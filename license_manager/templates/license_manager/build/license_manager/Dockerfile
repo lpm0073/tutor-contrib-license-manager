@@ -3,8 +3,10 @@
 #
 # date:         aug-2022
 #
-# usage:        build the docker image. this is based on
-#               https://github.com/overhangio/tutor/blob/master/tutor/templates/build/openedx/Dockerfile
+# usage:        build the docker image. this is mostly based on the Dockerfile used
+#               to create the openedx container.
+#
+# see: https://github.com/overhangio/tutor/blob/master/tutor/templates/build/openedx/Dockerfile
 #------------------------------------------------------------------------------
 
 ###### Minimal image with base system requirements for most stages
@@ -42,13 +44,13 @@ RUN dockerize_url="https://github.com/powerman/dockerize/releases/download/$DOCK
 
 
 # Now install license-manager
-# mcdaniel additions
-# basing this on: https://github.com/overhangio/tutor-license_manager/blob/master/tutorlicense_manager/templates/license_manager/build/license_manager/Dockerfile#L21
+# mcdaniel aug-2022: basing this section on the Tutor ecommerce plugin
+# see: https://github.com/overhangio/tutor-ecommerce/blob/master/tutorecommerce/templates/ecommerce/build/ecommerce/Dockerfile
 FROM minimal as code
-ARG LICENSE_REPOSITORY_REPOSITORY=https://github.com/edx/license-manager.git
+ARG LICENSE_MANAGER_REPOSITORY=https://github.com/edx/license-manager.git
 ARG LICENSE_MANAGER_VERSION={{ OPENEDX_COMMON_VERSION }}
 RUN mkdir -p /openedx/license_manager && \
-    git clone $LICENSE_REPOSITORY_REPOSITORY --branch $LICENSE_MANAGER_VERSION --depth 1 /openedx/license_manager
+    git clone $LICENSE_MANAGER_REPOSITORY --branch $LICENSE_MANAGER_VERSION --depth 1 /openedx/license_manager
 WORKDIR /openedx/license_manager
 
 ###### Install python requirements in virtualenv
