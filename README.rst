@@ -51,7 +51,7 @@ Linux & macOS command line
 Kubernetes
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-This plugins is compatible with `Kubernetes integration <http://docs.tutor.overhang.io/k8s.html>`__. When deploying to a Kubernetes cluster, run instead::
+This plugins is compatible with `Kubernetes integration <http://docs.tutor.overhang.io/k8s.html>`__. When deploying to a Kubernetes cluster, run instead:
 
 .. code-block:: shell
 
