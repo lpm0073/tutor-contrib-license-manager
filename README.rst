@@ -38,6 +38,16 @@ License Manager plugin for Tutor
 This is a plugin for `Tutor <https://docs.tutor.overhang.io>`__ that integrates the `License Manager <https://github.com/openedx/license-manager>`__ service in an Open edX platform.
 License Manager provides supplmental e-commerce service such as monthly subscription payment options. For further instructions on how to setup License Manager with Open edX, check the `official License Manager documentation <https://github.com/openedx/license-manager/tree/master/docs/>`__.
 
+This plugin does the following:
+
+- License Manager software installation
+- 1-click style Docker container build and push capability, including setup of Python virtual environment and static asset collection
+- automated MySQL integration, including creation and migration of the database itself, service account and permissions
+- automated oauth setup using the LMS as the oauth provider
+- fully automated Kubernetes deployment
+
+Also, note this `Getting Started <https://github.com/openedx/license-manager/blob/master/docs/getting_started.rst>`__ guide.
+
 Installation
 ------------
 
