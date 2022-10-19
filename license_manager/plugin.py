@@ -37,7 +37,6 @@ hooks.Filters.CONFIG_UNIQUE.add_items(
         # ("LICENSE_MANAGER_SECRET_KEY", "{{ 24|random_string }}"),
         ("LICENSE_MANAGER_DOCKER_IMAGE", "PLEASE-SET-ME"),
         ("LICENSE_MANAGER_MYSQL_PASSWORD", "{{ 8|random_string }}"),
-        ("LICENSE_MANAGER_OAUTH2_SECRET", "{{ 16|random_string }}"),
         ("LICENSE_MANAGER_SECRET_KEY", "{{ 24|random_string }}"),
         ("LICENSE_MANAGER_SOCIAL_AUTH_EDX_OAUTH2_SECRET", "{{ 16|random_string }}"),
         ("LICENSE_MANAGER_BACKEND_SERVICE_EDX_OAUTH2_SECRET", "{{ 16|random_string }}"),
